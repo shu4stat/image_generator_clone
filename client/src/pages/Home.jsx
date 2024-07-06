@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import SearchBar from "../components/SearchBar";
-import ImageCard from "../components/ImageCard";
+import SearchBar from "../components/SearchBar.jsx";
+import ImageCard from "../components/ImageCard.jsx";
 import { CircularProgress } from "@mui/material";
 import { GetPosts } from "../api/index.js";
 

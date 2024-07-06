@@ -1,60 +1,39 @@
 import React from "react";
+import { SearchOutlined } from "@mui/icons-material";
 import styled from "styled-components";
-import { useNavigate, useLocation } from "react-router-dom";
-import { AddRounded, ExploreRounded } from "@mui/icons-material";
-import Button from "./button";
 
-const Container = styled.div`
-  flex: 1;
-  background: ${({ theme }) => theme.navbar};
-  color: ${({ theme }) => theme.text_primary};
-  font-weight: bold;
-  font-size: 22px;
-  padding: 14px 50px;
+const SearchBarContainer = styled.div`
+  max-width: 550px;
   display: flex;
-  justify-content: space-between;
+  width: 90%;
+  border: 1px solid ${({ theme }) => theme.text_secondary + 90};
+  color: ${({ theme }) => theme.text_primary};
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  gap: 6px;
   align-items: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-  @media only screen and (max-width: 600px) {
-    padding: 10px 12px;
-  }
 `;
 
-const Navbar = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const path = location.pathname.split("/");
+const SearchBar = ({ search, setSearch }) => {
   return (
-    <Container>
-      GenAI
-      {path[1] === "post" ? (
-        <Button
-          onClick={() => navigate("/")}
-          text="Explore Posts"
-          leftIcon={
-            <ExploreRounded
-              style={{
-                fontSize: "18px",
-              }}
-            />
-          }
-          type="secondary"
-        />
-      ) : (
-        <Button
-          onClick={() => navigate("/post")}
-          text="Create new post"
-          leftIcon={
-            <AddRounded
-              style={{
-                fontSize: "18px",
-              }}
-            />
-          }
-        />
-      )}
-    </Container>
+    <SearchBarContainer>
+      <SearchOutlined />
+      <input
+        placeholder="Search with prompt or name . . ."
+        style={{
+          border: "none",
+          outline: "none",
+          width: "100%",
+          color: "inherit",
+          fontSize: "16px",
+          background: "transparent",
+        }}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+    </SearchBarContainer>
   );
 };
 
-export default Navbar;
+export default SearchBar;
