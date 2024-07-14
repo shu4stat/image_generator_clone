@@ -1,17 +1,18 @@
 {
   "dependencies": {
+    "-": "^0.0.1",
     "cloudinary": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongoose": "^8.4.5",
     "nodemon": "^3.1.4",
-    "openai": "^4.52.3"
+    "openai": "^4.52.7"
   },
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
