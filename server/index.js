@@ -34,16 +34,48 @@ app.get("/", async (req, res) => {
 });
 
 //function to connect to mongodb
+// const connectDB = () => {
+//   mongoose.set("strictQuery", true);
+//   mongoose
+//     .connect(process.env.MONGODB_URL)
+//     .then(() => console.log("MongoDB Connected"))
+//     .catch((err) => {
+//       console.error("Failed to connect to DB");
+//       console.error(err);
+//     });
+// };
+
+// const mongoose = require("mongoose");
+const uri = process.env.MONGODB_URL;
+
+const clientOptions = {
+  serverApi: { version: "1", strict: true, deprecationErrors: true },
+};
+
 const connectDB = () => {
   mongoose.set("strictQuery", true);
   mongoose
-    .connect(process.env.MONGODB_URL)
+    .connect(uri, clientOptions)
     .then(() => console.log("MongoDB Connected"))
     .catch((err) => {
       console.error("Failed to connect to DB");
       console.error(err);
     });
 };
+// async function run() {
+//   try {
+//     // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
+//     await mongoose.connect(uri, clientOptions);
+//     await mongoose.connection.db.admin().command({ ping: 1 });
+//     console.log(
+//       "Pinged your deployment. You successfully connected to MongoDB!"
+//     );
+//   } finally {
+//     // Ensures that the client will close when you finish/error
+//     await mongoose.disconnect();
+//   }
+// }
+// run().catch(console.dir);
 
 //function to start the server
 const startServer = async () => {
